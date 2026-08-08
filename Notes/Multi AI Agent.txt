@@ -136,4 +136,5 @@ FULL_DOCUMENTATION.md
 
 -------------------------------------------------------Deployment Complete----------------------------------------------------------------
 
+
 To delete all docker images, docker volumes, docker builds run this command in Ubuntu           docker system prune -a --volumes -f
