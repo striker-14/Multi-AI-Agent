@@ -447,7 +447,7 @@ Go to **SonarQube**, click **Projects** and see the code quality report generate
 
 ## Step 4 :  AWS Setup and Build & Push to AWS
 
-Follow these steps to set up AWS integration with Jenkins for building and pushing Docker images to **Amazon ECR**.
+Follow these steps to set up AWS integration with Jenkins for building and pushing Docker images to **Amazon ECR** (Elastic Container Registry)
 
 ### 1. Install Required Jenkins Plugins
 
@@ -466,11 +466,11 @@ docker restart jenkins-dind
 
 ### 2. Create an IAM User for AWS Access
 
-1. Go to the **AWS Console** → **IAM** → **Users** → **Add User**.
+1. Go to the **AWS Console** → **IAM** → **Users** → **Add User**. Name it `multi-ai-agent`
 2. Add the necessary policies:
    - Attach the policy: **AmazonEC2ContainerRegistryFullAccess**
 
-3. Once the user is created, select the user and click on **Create Access Key**.
+3. Once the user is created, select the user and click on **Create Access Key** and select Command Line Interface (CLI). 
 4. Copy the **Access Key ID** and **Secret Access Key**.
 
 ---
@@ -489,7 +489,7 @@ docker restart jenkins-dind
 
 ### 4. Install AWS CLI on Jenkins Container
 
-1. Open a new terminal and run the following commands inside your **jenkins-dind** container:
+1. Open wsl where custom_jenkins is running (**jenkins-dind** container)
 
 ```bash
 docker exec -u root -it jenkins-dind bash
@@ -527,14 +527,14 @@ exit
 ### 5. Create an ECR Repository in AWS
 
 1. Go to **AWS Console** → **ECR (Elastic Container Registry)** → **Create Repository**.
-2. Name the repository (e.g., `my-repository`).
+2. Name the repository (e.g., `my-repo`).
 3. Set up the repository as required and save the repository URL for later use.
 
 ---
 
 ### 6. Add Build and Push Docker Image to ECR Stage in Jenkinsfile
 
-Already done if clone just change according to your repo name..
+Uncomment stage('Build and Push Docker Image to ECR') in Jenkinsfile
 
 ### 7. Push the Changes to GitHub
 
