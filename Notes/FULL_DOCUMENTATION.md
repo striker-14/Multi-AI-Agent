@@ -313,7 +313,7 @@ Follow these steps to integrate **SonarQube** with Jenkins for code quality anal
 
 ### 1. Download and Run SonarQube Docker Container
 
-1. Go to **DockerHub** and search for **SonarQube**. Scroll down to find the commands.
+1. Go to google search **DockerHub** and search for **SonarQube**. Scroll down to find the commands.
 2. Run the following commands in a new WSL terminal to configure the system:
 
 ```bash
@@ -323,7 +323,7 @@ ulimit -n 131072
 ulimit -u 8192
 ```
 
-3. Run the SonarQube container with the appropriate settings. Make sure to change the container name to `sonarqube-dind` and remove the dollar sign (`$`) from the command. You will find the command in the **Demo** section of DockerHub.
+3. Below in Demo click 'Try Out SonarQube'. From the Docker Image, copy the command. Make sure to change the container name to `sonarqube-dind` and remove the dollar sign (`$`) from the command.
 
 ```bash
 docker run -d --name sonarqube-dind \
@@ -338,7 +338,7 @@ docker run -d --name sonarqube-dind \
 docker ps
 ```
 
-5. Access **SonarQube** on `http://<WSL_IP>:9000` (replace `<WSL_IP>` with your WSL IP address). Log in using the default credentials:  
+5. Access **SonarQube** on `http://<WSL_IP>:9000` (replace `<WSL_IP>` with your WSL IP address (Jenkins, just replace 8080 by 9000)). Log in using the default credentials:  
    - **Username:** `admin`  
    - **Password:** `admin`
 
@@ -351,7 +351,7 @@ docker ps
    - **SonarScanner**
    - **SonarQualityGates**
 
-3. Restart the Jenkins container:
+3. Restart the Jenkins container. Run this command in wsl where custom_jenkins
 
 ```bash
 docker restart jenkins-dind
@@ -388,14 +388,16 @@ docker restart jenkins-dind
    - Apply and save.
 
 3. Go to **Manage Jenkins** -> **Tools** and look for **SonarQube Scanner**.
-   - Select **SonarQube Scanner** and configure it.
-   - Tick the option **Install Automatically**.
+   - Select **SonarQube Scanner** and configure it. Give it name `Sonarqube`
+   - Tick the option **Install Automatically**. Apply and Save.
 
 ---
 
 ### 5. Create a Stage in `Jenkinsfile` for SonarQube
 
-1. Open the **Jenkinsfile** in **VS Code** and add the Sonarqube stage ( already provided in the code )
+1. Open the **Jenkinsfile** in **VS Code** and uncomment the environment and Sonarqube analysis stage (already provided in the code)
+
+2. Change credentialsID: (token name), withSonarQubeEnv (environment name), SONAR_PROJECT_KEY (SonarQube Project Name), SONAR_SCANNER_HOME(SonarQube Tool Name)   
 
 
 2. Push the changes to your **GitHub** repository.
