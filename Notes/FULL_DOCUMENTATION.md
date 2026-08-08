@@ -404,14 +404,18 @@ docker restart jenkins-dind
 
 ---
 
+### We will create a new Docker network and then join Jenkins and SonarQube
 
 ### 6. Create a Docker Network for Jenkins and SonarQube
 
-1. Run the following command to create a new Docker network:
+1. Run the following command to create a new Docker network. in wsl without custom_jenkins
 
 ```bash
 docker network create dind-network
 ```
+Check it using       docker network ls
+
+Clear the screen using        clear
 
 2. Connect both containers to the new network:
 
