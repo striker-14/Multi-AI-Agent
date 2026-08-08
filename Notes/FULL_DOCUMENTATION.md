@@ -280,12 +280,12 @@ Follow the steps below to integrate GitHub with Jenkins for automated pipeline e
 ### 5. Create `Jenkinsfile` in VS Code
 
 1. Open **VS Code** and create a file named **`Jenkinsfile`** ( already done if cloned ). [12] Jenkinsfile
-2. For now only keep the first stage of Jenkinsfile rest should be commendted out.
+2. For now only keep the first stage of Jenkinsfile rest should be commendted out. Comment out environment and stage(SonarQube) till end, beware of curly braces
 
 
 > **Explanation**: This simple pipeline has one stage, **Checkout**, where Jenkins will fetch the latest code from your GitHub repository.
 
-3. Push the `Jenkinsfile` to your GitHub repository.
+3. Push the `Jenkinsfile` to your GitHub repository using cmd.
 
 ---
 
