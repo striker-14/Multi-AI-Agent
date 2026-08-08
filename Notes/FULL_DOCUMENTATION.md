@@ -441,7 +441,7 @@ docker network connect dind-network sonarqube-dind
 
 ### 9. View Results in SonarQube
 
-Go to **SonarQube** and see the code quality report generated for your project.
+Go to **SonarQube**, click **Projects** and see the code quality report generated for your project.
 
 ---
 
