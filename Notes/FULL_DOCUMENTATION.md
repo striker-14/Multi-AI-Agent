@@ -260,7 +260,11 @@ Follow the steps below to integrate GitHub with Jenkins for automated pipeline e
 1. Go to the **Jenkins Dashboard**.
 2. Click on **New Item**.
 3. Select **Pipeline** and provide a name for the job (Multi AI Agent)
-4. Click **Apply** and then **Create**.
+4. For Pipeline definition - **Pipeline script from SCM**
+5. SCM - **Git**
+6. Paste **Repository Url** and select **Credential** as your GitHub token
+7. Change branch to **(*/main*)**
+5. Click **Apply** and then **Create**.
 
 ---
 
