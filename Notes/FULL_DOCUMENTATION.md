@@ -555,7 +555,7 @@ Push the updated `Jenkinsfile` to your GitHub repository to trigger the pipeline
 ✅ **Congratulations!** Your Docker image has been successfully built and pushed to Amazon ECR using Jenkins.
 
 
-## Step 5 : Final Deployment Stage with AWS ECS and Jenkins
+## Step 5 : Final Deployment Stage with AWS ECS (Elastic Container Service) and Jenkins
 
 Follow these steps to deploy your app to **AWS ECS Fargate** using Jenkins and automate the deployment process.
 
@@ -563,22 +563,27 @@ Follow these steps to deploy your app to **AWS ECS Fargate** using Jenkins and a
 
 1. **Create ECS Cluster**:
    - Go to **ECS** → **Clusters** → **Create Cluster**.
-   - Give your cluster a name and select **Fargate**.
+   - Give your cluster a name `multi-ai-agent` and select **Fargate**.
    - Click **Create** to create the cluster.
 
 2. **Create ECS Task Definition**:
    - Go to **ECS** → **Task Definitions** → **Create new Task Definition**.
-   - Select **Fargate** as the launch type.
-   - Give the task definition a name (e.g., `llmops-task`).
+   - Select **Fargate** as the launch type. Select 2 CPUs and memory 6 GB
+   - Give the task definition a name (e.g., `multi-ai-agent-def`).
 
 3. **Container Configuration**:
-   - Under **Container details**, give the container a name and use the **ECR URI** (the Docker image URL from your ECR repository).
-   - In **Port Mapping**, use the following configuration:
-     - **Port:** 8501
+   - Under **Container details**, give the container a name `llmops` and use the **ECR URI** (the Docker image URL from your ECR repository).
+   - In **Port Mapping**, create new and use the following configuration:
+     - **Port:** 8501 (for Streamlit)
      - **Protocol:** TCP
      - **None:** leave it as default.
+   - Create another and this time use **Port** 9999 (for FastAPI)
+
+4. Click **add environment variable** 
+   - In key add Groq API key name from .env and it's key in value
+   - Same for Tavily API key
    
-4. **Create Task Definition**:
+5. **Create Task Definition**:
    - Click **Create** to create the task definition.
 
 ---
@@ -587,12 +592,11 @@ Follow these steps to deploy your app to **AWS ECS Fargate** using Jenkins and a
 
 1. Go to **ECS** → **Clusters** → Your cluster.
 2. Click **Create Service**.
-3. Select your **Task Definition** (`llmops-task`).
+3. Select your **Task Definition** (`multi-ai-agent-def`).
 4. Select **Fargate** for launch type (this should be the default option).
-5. Give the service a name (e.g., `llmops-service`).
-6. Under **Networking**, select:
+5. Under **Networking**, select:
    - **Public IP**: Allow a public IP.
-7. Click **Create** and wait for a few minutes for the service to be deployed.
+6. Click **Create** and wait for a few minutes for the service to be deployed.
 
 ---
 
@@ -604,7 +608,8 @@ Follow these steps to deploy your app to **AWS ECS Fargate** using Jenkins and a
 4. Add a new **Custom TCP rule** with the following details:
    - **Port range:** 8501
    - **Source:** 0.0.0.0/0 (allow access from all IPs).
-5. Save the rules.
+5. Add another with **Port range** 9999 and same source
+6. Save the rules.
 
 ---
 
@@ -625,6 +630,9 @@ Follow these steps to deploy your app to **AWS ECS Fargate** using Jenkins and a
 
 2. **Update Jenkinsfile for ECS Deployment**:
    - Add the deployment stage to your `Jenkinsfile`. This will automate the deployment of your Docker container to AWS ECS.
+   - Change these two things --cluster multi-ai-agent-cluster \
+                             --service multi-ai-agent-def-service-uc5c40tb \
+     with name of the cluster and service name
 
 3. Push the updated code to GitHub.
 
