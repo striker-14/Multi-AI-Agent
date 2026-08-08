@@ -1,0 +1,137 @@
+First you have to tell what type of agent you want, you want a financial agent, study agent, medical agent. Then you have to type your question, what question you want to ask.
+
+groq will be used as your LLM to generate output for the question that we are asking
+
+Tavily if you want to fetch answer from the internet because on the internet we will get latest results because LLMs are trained on data up to a date in the past
+
+FastAPI to build backend APIs for handling user requests
+
+Deploying our application on AWS
+
+Containerization using Docker
+
+For creating the UI, Streamlit
+
+For interacting with our LLM, we will be using LangChain
+
+For creating our AI Agent, we will be using LangGraph. LangGraph is built on LangChain to create AI Agents and their workflows
+
+LangChain is generative AI framework, LangGraph is Agentic AI framework
+
+SonarQube main use is checking code quality (Bugs, Code Smells, Code Duplication), to check our code for bugs, security issues, and bad practices. It's like evaluator of our app
+
+Jenkins for making CI/CD pipeline
+
+AWS ECS Fargate to deploy and run our app on the cloud
+
+GitHub will be our SCM. Copy the code from GitHub to Jenkins, in Jenkins we will create Docker Image using Docker file that we created and then we will push Docker Image to AWS ECR (container registry where we can store images). From ECR we will deploy it to AWS ECS Fargate. All this whole thing will be connected using Jenkins using a CI/CD pipeline, so if we click on the build now button all these things will get executed
+
+
+--------------------------------------------------Building Application-------------------------------------------------------------------
+
+Create a virtual environment and activate it. 		python -m venv venv 		venv\Scripts\activate
+
+Create requirements.txt
+Refer to [1] requirements.txt
+
+Create setup.py
+[2] setup.py
+pip install -e .
+
+Create app Directory. All project structure will be inside this folder, backend, UI, everything.
+Inside app create directories - backend, common, frontend, core, config
+Create main.py file inside app
+Create __init__.py to make this app as a project dependency
+Create __init__.py, logger.py and custom_exception.py in common inside app
+[3] common
+
+Run 		pip install -e .
+Every time we create __init__.py we have to run
+
+core (inside this will be the main logic of our multi ai agent)
+
+config (here will be all the setup of our API, how to load the API and everything)
+
+main.py (main app code, as soon as we trigger this main.py, our app will start running, basically we will connect our frontend, backend and everything inside this main.py)
+
+Create .env (Here we will list all the API keys and everything)
+Go to your browser and search groq api, go to your account and create an api key, copy that key and paste it in .env
+Copy Tavily API key
+
+-----------------------------------------------------------.env---------------------------------------------------------------------------
+GROQ_API_KEY=" "
+TAVILY_API_KEY=" "
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Now we will do our WSL (Windows Subsystem Linux) setup. Because when we do production grade projects we will be doing them in Linux not in windows. WSL gives you a feeling of Linux inside a windows system. Install WSL, Refer to FULL_DOCUMENTATION.md
+
+We will be using Ubuntu Environment. Install it from Microsoft Store. Set it up using FULL_DOCUMENTATION.md
+
+Install Docker Engine inside Ubuntu (Docker Engine on Ubuntu using WSL)
+
+Create __init__.py and settings.py in config inside app
+[4] config
+
+Create __init__.py and ai_agent.py (this file contains all the core logic of our app) in core inside app
+[5] core
+pip install -e .
+
+Create __init__.py and api.py (we will be creating our API using FastAPI) in backend inside app
+[6] backend
+
+Create __init__.py and ui.py in frontend inside app
+[7] frontend
+
+pip install -e .
+
+[8] main.py 		python app/main.py
+Now our app will be running on web browser
+
+
+--------------------------------------------------Code Versioning-------------------------------------------------------------------------
+
+Create .gitignore (list all files and folder that you don't want to push to GitHub)
+[9] .gitignore
+
+Open GitHub, create repository Multi AI Agent. Now paste the command - init, branch main, remote add origin. Then add, commit and push
+
+
+---------------------------------------------------Dockerfile-----------------------------------------------------------------------------
+
+Create Dockerfile
+[10] Dockerfile
+
+
+---------------------------------------------------Jenkins Setup for CI/CD Deployment-----------------------------------------------------
+
+Create custom_jenkins (Directory) and inside it create Dockerfile
+[11] Dockerfile
+It will be used to build our Jenkins Image and after that to setup our Jenkins Container and inside that our Jenkins will be running. So that we can run Jenkins because whole CI/CD will be done from Jenkins only
+
+We are using dind technique. One Docker container will be running Jenkins, inside that Jenkins we will be running Docker again (One Docker container for Jenkins, inside that, another Docker container for Docker
+
+Open your terminal in Ubuntu (WSL) in VS Code. Go inside custom_jenkins using		cd custom_jenkins
+Refer to Deployment to AWS Fargate in FULL_DOCUMENTATION.md
+
+
+----------------------------------------------------GitHub Integration with Jenkins-------------------------------------------------------
+
+Refer to FULL_DOCUMENTATION.md
+
+
+----------------------------------------------------SonarQube Integration with Jenkins----------------------------------------------------
+
+FULL_DOCUMENTATION.md
+
+
+-----------------------------------------------------AWS Setup and Build & Push to AWS----------------------------------------------------
+
+FULL_DOCUMENTATION.md
+
+
+------------------------------------------------------Final Deployment Stage with AWS ECS and Jenkins-------------------------------------
+
+FULL_DOCUMENTATION.md
+
+
+-------------------------------------------------------Deployment Complete----------------------------------------------------------------
