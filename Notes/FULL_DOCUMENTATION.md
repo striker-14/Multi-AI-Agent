@@ -161,7 +161,7 @@ docker run -d --name jenkins-dind \
   jenkins-dind
 ```
 
-> After successful execution, you'll receive a long alphanumeric string.
+> After successful execution, you'll receive a long alphanumeric string
 
 ### 5. Verify the Running Container
 
@@ -234,7 +234,7 @@ Follow the steps below to integrate GitHub with Jenkins for automated pipeline e
 
 1. Go to **GitHub**.
 2. Navigate to **Settings** -> **Developer Settings** -> **Personal Access Tokens** -> **Classic**.
-3. Click on **Generate New Token**.
+3. Click on **Generate New Token (Classic)**.
 4. Provide a **name** and select the following **permissions**:
    - `repo` (for repository access)
    - `repo_hook` (for hook access)
@@ -247,7 +247,7 @@ Follow the steps below to integrate GitHub with Jenkins for automated pipeline e
 
 1. Go to the **Jenkins Dashboard**.
 2. Click **Manage Jenkins** -> **Manage Credentials** -> **Global**.
-3. Click **Add Credentials**.
+3. Click **Add Credentials**. Select **Username with password**
 4. In the **Username** field, enter your **GitHub account name**.
 5. In the **Password** field, paste the **GitHub token** you just generated.
 6. In the **ID** field, enter a name for this credential (e.g., `github-token`).
@@ -259,7 +259,7 @@ Follow the steps below to integrate GitHub with Jenkins for automated pipeline e
 
 1. Go to the **Jenkins Dashboard**.
 2. Click on **New Item**.
-3. Select **Pipeline** and provide a name for the job.
+3. Select **Pipeline** and provide a name for the job (Multi AI Agent)
 4. Click **Apply** and then **Create**.
 
 ---
@@ -271,6 +271,7 @@ Follow the steps below to integrate GitHub with Jenkins for automated pipeline e
 3. Fill in the necessary details, such as:
    - **Repository URL** (your GitHub repository URL)
    - **Credentials** (select the `github-token` created earlier)
+   - **Branch** (*/main)
 4. Click **Generate Pipeline Script**.
 5. Copy the generated script.
 

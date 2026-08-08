@@ -1,9 +1,9 @@
-langchain-groq
-langchain-community
+langchain-groq==0.2.0
+langchain-community==0.3.7
 python-dotenv
 uvicorn
 fastapi
 pydantic
 streamlit
-langgraph
-langchain-core
+langgraph==0.2.67
+langchain-core==0.3.63
