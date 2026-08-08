@@ -654,18 +654,6 @@ Follow these steps to deploy your app to **AWS ECS Fargate** using Jenkins and a
 
 ---
 
-### 8. Option 1: Use AWS ECS Environment Variables (Simplest)
-
-1. Go to your ECS **Task Definition** in the AWS Console.
-2. Edit the container definition.
-3. Scroll to the **Environment Variables** section.
-4. Add the following environment variables:
-   - **GROQ_API_KEY:** `gsk_...`
-   - **TAVILY_API_KEY:** `tvly-dev-...`
-5. Save the changes and **redeploy the task**.
-
----
-
 ### ✅ **Deployment Complete**
 
 Your app is now deployed to AWS ECS Fargate. You can access it via the public IP at port `8501`. The deployment process has been automated using Jenkins, and the app is now live.
