@@ -400,7 +400,7 @@ docker restart jenkins-dind
 2. Change credentialsID: (token name), withSonarQubeEnv (environment name), SONAR_PROJECT_KEY (SonarQube Project Name), SONAR_SCANNER_HOME(SonarQube Tool Name)   
 
 
-2. Push the changes to your **GitHub** repository.
+3. Push the changes to your **GitHub** repository.
 
 ---
 
