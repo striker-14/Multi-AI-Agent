@@ -534,7 +534,9 @@ exit
 
 ### 6. Add Build and Push Docker Image to ECR Stage in Jenkinsfile
 
-Uncomment stage('Build and Push Docker Image to ECR') in Jenkinsfile
+Uncomment stage('Build and Push Docker Image to ECR') in Jenkinsfile.
+
+Change AWS_REGION to whatever is your region in AWS. Look at the url `region=`
 
 ### 7. Push the Changes to GitHub
 
