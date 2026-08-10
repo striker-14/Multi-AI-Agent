@@ -93,7 +93,7 @@ Now our app will be running on web browser
 Create .gitignore (list all files and folder that you don't want to push to GitHub)
 [9] .gitignore
 
-Open GitHub, create repository Multi AI Agent. Now paste the command - init, branch main, remote add origin. Then add, commit and push
+Open GitHub, create repository Multi AI Agent. Now paste the command - init, branch main, remote add origin. Then add, commit, and push
 
 
 ---------------------------------------------------Dockerfile-----------------------------------------------------------------------------
